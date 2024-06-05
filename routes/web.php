@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
@@ -177,6 +178,9 @@ Route::controller(BannerController::class)->group(function(){
     Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     Route::get('/category/subcategories/{id}', 'ShowSubcategories')->name('category.subcategories');
 });
+
+//Frontend Product Details All Route
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 
 
