@@ -27,7 +27,8 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex flex-column align-items-center text-center">
- 	<img src="{{ (!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+ 	<img src="{{ (!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg') }}" 
+	alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 					<div class="mt-3">
 						<h4>{{ $vendor->name }}</h4>
 						<p class="text-secondary mb-1">{{ $vendor->email }}</p>

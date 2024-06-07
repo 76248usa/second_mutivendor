@@ -35,6 +35,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
 	integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	{{-- <script src="https://cdn.tiny.cloud/1/7z60h9eu7vq2qlvzh5bxpj4dxfn2iz72jn8nleqkdw3xgucy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script> --}}
 	
 	<title>Admin Dashboard</title>
 </head>
@@ -129,13 +136,19 @@
 
 <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 
-<script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
-	</script>
-	<script>
-		tinymce.init({
-		  selector: '#mytextarea'
-		});
-	</script>
+
+{{-- 
+<script src="https://cdn.tiny.cloud/1/7z60h9eu7vq2qlvzh5bxpj4dxfn2iz72jn8nleqkdw3xgucy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script> --}}
+
+
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
+
 </body>
 
 </html>

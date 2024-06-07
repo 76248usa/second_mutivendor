@@ -6,7 +6,8 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> <a href="shop-grid-right.html">Vegetables & tubers</a> <span></span> Seeds of Change Organic
+                    <span></span> <a href="shop-grid-right.html">{{ $product->category->category_name }}</a>
+                     <span></span> {{ $product->subcategory->subcategory_name }}  <span></span>
                 </div>
             </div>
         </div>
@@ -20,38 +21,19 @@
                                     <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                     <!-- MAIN SLIDES -->
                                     <div class="product-image-slider">
+                                        @foreach($multiImg as $img)
                                         <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-2.jpg" alt="product image" />
+                                            <img src="{{ asset($img->photo_name) }}" alt="product image" />
                                         </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-1.jpg" alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-3.jpg" alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-4.jpg" alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-5.jpg" alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-6.jpg" alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="assets/imgs/shop/product-16-7.jpg" alt="product image" />
-                                        </figure>
+                                        @endforeach
                                     </div>
                                     <!-- THUMBNAILS -->
+                                    @foreach($multiImg as $img)
                                     <div class="slider-nav-thumbnails">
-                                        <div><img src="assets/imgs/shop/thumbnail-3.jpg" alt="product image" /></div>
-                                        <div><img src="assets/imgs/shop/thumbnail-4.jpg" alt="product image" /></div>
-                                        <div><img src="assets/imgs/shop/thumbnail-5.jpg" alt="product image" /></div>
-                                        <div><img src="assets/imgs/shop/thumbnail-6.jpg" alt="product image" /></div>
-                                        <div><img src="assets/imgs/shop/thumbnail-7.jpg" alt="product image" /></div>
-                                        <div><img src="assets/imgs/shop/thumbnail-8.jpg" alt="product image" /></div>
-                                        <div><img src="assets/imgs/shop/thumbnail-9.jpg" alt="product image" /></div>
+                                        <div><img src="{{ asset($img->photo_name) }}" alt="product image" /></div>
+                                        
                                     </div>
+                                    @endforeach
                                 </div>
                                 <!-- End Gallery -->
                             </div>
@@ -97,40 +79,69 @@
                 
             </div>
             <div class="short-desc mb-30">
-                <p class="font-lg"> {{ $product->short_desc }}</p>
+                <p class="font-lg"> {!! $product->short_desc !!}</p>
             </div>
-            <div class="attr-detail attr-size mb-30">
-                <strong class="mr-10">Size / Weight: </strong>
-                <ul class="list-filter size-filter font-small">
-                    <li><a href="#">50g</a></li>
-                    <li class="active"><a href="#">60g</a></li>
-                                            <li><a href="#">80g</a></li>
-                                            <li><a href="#">100g</a></li>
-                                            <li><a href="#">150g</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="detail-extralink mb-50">
-                                        <div class="detail-qty border radius">
-                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <input type="text" name="quantity" class="qty-val" value="1" min="1">
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                        </div>
-                                        <div class="product-extra-link2">
-                                            <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                        </div>
-                                    </div>
+
+            @if ($product->product_size == NULL)
+
+            @else
+             <div class="attr-detail attr-size mb-30">
+                <strong class="mr-10" style="width:50px;">Size: </strong>
+                <select class="form-control unicase-form-control" id="size">
+                    <option selected="" disable=""> -- Choose Size -- </option>
+                    @foreach ($product_size as $size )
+                        <option value="{{ $size }}">{{ ucwords($size) }}</option>
+                    @endforeach
+                </select>
+            </div>
+                
+            @endif
+
+    @if ($product->product_color == NULL)
+
+            @else
+             <div class="attr-detail attr-size mb-30">
+                <strong class="mr-10" style="width:50px;">Color: </strong>
+                <select class="form-control unicase-form-control" id="size">
+                    <option selected="" disable=""> -- Choose Color -- </option>
+                    @foreach ($product_color as $color )
+                        <option value="{{ $color }}">{{ ucwords($color) }}</option>
+                    @endforeach
+                </select>
+            </div>
+                
+            @endif
+
+           
+                <div class="detail-extralink mb-50">
+                    <div class="detail-qty border radius">
+                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
+                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                    </div>
+                    <div class="product-extra-link2">
+                        <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                        <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                    </div>
+                </div>
+@if ($product->vendor_id == NULL)
+<h6> Sold By <a href="#"><span class="text-danger"> Owner </span></a></h6>
+@else
+ <h6> Sold By <a href="#"><span class="text-danger"> {{ $product->vendor->name }} </span></a></h6> 
+
+@endif
+<hr>
 <div class="font-xs">
     <ul class="mr-50 float-start">
-        <li class="mb-5">Type: <span class="text-brand">Organic</span></li>
-        <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
-        <li>LIFE: <span class="text-brand">70 days</span></li>
+        <li class="mb-5 mt-5">Brand: <span class="text-brand">  {{ $product->brand->brand_name }}</span></li>
+        <li class="mb-5">Category:<span class="text-brand">  {{ $product->category->category_name }}</span></li>
+        <li>Subcategory: <span class="text-brand">  {{ $product->subcategory->subcategory_name }}</span></li>
     </ul>
     <ul class="float-start">
-        <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-        <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
-        <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span></li>
+        <li class="mb-5">Product Code: <a href="#"> {{ $product->product_code }}</a></li>
+        <li class="mb-5">Tags: <a href="#" rel="tag"> {{ $product->product_code }}</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
+        <li>Stock:<span class="in-stock text-brand ml-5"> {{ $product->product_qty }} in stock</span></li>
     </ul>
 </div>
                                 </div>
@@ -153,39 +164,14 @@
                                         <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
                                     </li>
                                 </ul>
+                        
+
                                 <div class="tab-content shop_info_tab entry-main-content">
                                     <div class="tab-pane fade show active" id="Description">
-                                        <div class="">
-                                            <p>Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear furiously this apart.</p>
-                                            <p>Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.</p>
-                                            <ul class="product-more-infor mt-30">
-                                                <li><span>Type Of Packing</span> Bottle</li>
-                                                <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
-                                                <li><span>Quantity Per Case</span> 100ml</li>
-                                                <li><span>Ethyl Alcohol</span> 70%</li>
-                                                <li><span>Piece In One</span> Carton</li>
-                                            </ul>
-                                            <hr class="wp-block-separator is-style-dots" />
-                                            <p>Laconic overheard dear woodchuck wow this outrageously taut beaver hey hello far meadowlark imitatively egregiously hugged that yikes minimally unanimous pouted flirtatiously as beaver beheld above forward energetic across this jeepers beneficently cockily less a the raucously that magic upheld far so the this where crud then below after jeez enchanting drunkenly more much wow callously irrespective limpet.</p>
-                                            <h4 class="mt-30">Packaging & Delivery</h4>
-                                            <hr class="wp-block-separator is-style-wide" />
-                                            <p>Less lion goodness that euphemistically robin expeditiously bluebird smugly scratched far while thus cackled sheepishly rigid after due one assenting regarding censorious while occasional or this more crane went more as this less much amid overhung anathematic because much held one exuberantly sheep goodness so where rat wry well concomitantly.</p>
-                                            <p>Scallop or far crud plain remarkably far by thus far iguana lewd precociously and and less rattlesnake contrary caustic wow this near alas and next and pled the yikes articulate about as less cackled dalmatian in much less well jeering for the thanks blindly sentimental whimpered less across objectively fanciful grimaced wildly some wow and rose jeepers outgrew lugubrious luridly irrationally attractively dachshund.</p>
-                                            <h4 class="mt-30">Suggested Use</h4>
-                                            <ul class="product-more-infor mt-30">
-                                                <li>Refrigeration not necessary.</li>
-                                                <li>Stir before serving</li>
-                                            </ul>
-                                            <h4 class="mt-30">Other Ingredients</h4>
-                                            <ul class="product-more-infor mt-30">
-                                                <li>Organic raw pecans, organic raw cashews.</li>
-                                                <li>This butter was produced using a LTG (Low Temperature Grinding) process</li>
-                                                <li>Made in machinery that processes tree nuts but does not process peanuts, gluten, dairy or soy</li>
-                                            </ul>
-                                            <h4 class="mt-30">Warnings</h4>
-                                            <ul class="product-more-infor mt-30">
-                                                <li>Oil separation occurs naturally. May contain pieces of shell.</li>
-                                            </ul>
+                                        <div class=" "> 
+                                        
+                                            <p>{!! $product->long_desc !!}</p>
+                                           
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="Additional-info">
@@ -278,41 +264,39 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="Vendor-info">
-                                        <div class="vendor-logo d-flex mb-30">
-                                            <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
-                                            <div class="vendor-name ml-15">
-                                                <h6>
-                                                    <a href="vendor-details-2.html">Noodles Co.</a>
-                                                </h6>
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 90%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ul class="contact-infor mb-50">
-                                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Contact Seller:</strong><span>(+91) - 540-025-553</span></li>
-                                        </ul>
-                                        <div class="d-flex mb-55">
-                                            <div class="mr-30">
-                                                <p class="text-brand font-xs">Rating</p>
-                                                <h4 class="mb-0">92%</h4>
-                                            </div>
-                                            <div class="mr-30">
-                                                <p class="text-brand font-xs">Ship on time</p>
-                                                <h4 class="mb-0">100%</h4>
-                                            </div>
-                                            <div>
-                                                <p class="text-brand font-xs">Chat response</p>
-                                                <h4 class="mb-0">89%</h4>
-                                            </div>
-                                        </div>
-                                        <p>Noodles & Company is an American fast-casual restaurant that offers international and American noodle dishes and pasta in addition to soups and salads. Noodles & Company was founded in 1995 by Aaron Kennedy and is headquartered in Broomfield, Colorado. The company went public in 2013 and recorded a $457 million revenue in 2017.In late 2018, there were 460 Noodles & Company locations across 29 states and Washington, D.C.</p>
+                    <div class="tab-pane fade" id="Vendor-info">
+                        <div class="vendor-logo d-flex mb-30">
+                           
+                            <img src="{{ (!empty($product->vendor->photo)) ? url('upload/vendor_images/'.$product->vendor->photo):url('upload/no_image.jpg') }}" 
+                                alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                            <div class="vendor-name ml-15">
+                                @if ($product->vendor_id == NULL)
+                                <a href="vendor-details-2.html">Owner</a>
+                                @else
+                                {{ $product->vendor->name }}
+                                @endif
+                                
+                                <h6>
+                                    <a href="vendor-details-2.html">Noodles Co.</a>
+                                </h6>
+                                <div class="product-rate-cover text-end">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 90%"></div>
                                     </div>
+                                    <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                            <ul class="contact-infor mb-50">
+                                <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" />
+                                    <strong>Address:  </strong> <span>{{ $product->vendor->address }}</span></li>
+                                <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" />
+                                    <strong>Contact Seller:  </strong><span>   {{ $product->vendor->phone }}</span></li>
+                            </ul>
+                            
+                            <p> {{ $product->vendor->vendor_short_info }}</p>
+                        </div>
+
                                     <div class="tab-pane fade" id="Reviews">
                                         <!--Comments-->
                                         <div class="comments-area">
