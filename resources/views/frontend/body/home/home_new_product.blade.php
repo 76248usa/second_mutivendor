@@ -23,6 +23,8 @@
     <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                         <div class="row product-grid-4">
+
+                            
     @foreach($products as $product)
     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
@@ -92,9 +94,7 @@
         </div>
     </div> 
     <!--end product card-->
-    @endforeach
-                             
-                            
+@endforeach 
                         </div>
                         <!--End product-grid-4-->
                     </div>
@@ -165,13 +165,11 @@ $catwiseProduct = App\Models\Product::where('status',1)->where('category_id',$ca
   <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
 
                     @endif
-
-
-
+                    
                 </div>
                 <div class="product-card-bottom">
 
-                    @if($product->discount_price == NULL)
+            @if($product->discount_price == NULL)
                      <div class="product-price">
                         <span>${{ $product->selling_price }}</span>
 

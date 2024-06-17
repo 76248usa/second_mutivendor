@@ -1,7 +1,11 @@
 @extends('vendor.vendor_dashboard')
 @section('vendor')
 
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" 
+  rel="stylesheet" type="text/css" />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
  
 <div class="page-content">
  
@@ -62,7 +66,7 @@
  
 			  <div class="mb-3 form-group">
 					<label for="inputProductDescription" class="form-label">Long Description</label>
-					<textarea id="mytextarea" name="long_desc">Hello, World!</textarea>
+					<textarea id="mytextarea" name="long_desc"></textarea>
 			  </div>
  
 			<div class="mb-3 form-group">
@@ -76,8 +80,6 @@
 			 <div class="mb-3 form-group">
 					<label for="inputProductTitle" class="form-label">Multi Image</label>
 					<input class="form-control" name="multi_img[]" type="file" id="multiImg" multiple="">
- 
- 
 			<div class="row" id="preview_img"></div>
  
 			  </div>
@@ -103,8 +105,6 @@
 					<label for="inputStarPoints" class="form-label">Product Quantity</label>
 					<input type="text" name="product_qty" class="form-control" id="inputStarPoints" placeholder="00.00">
 				  </div>
- 
- 
  
 				  <div class="col-12">
 					<label for="inputProductType" class="form-label">Product Brand</label>
@@ -177,8 +177,6 @@
 		</div>
 	</div>
  
- 
- 
 		</div> <!-- // end row. -->
 					
 				  </div>
@@ -198,8 +196,6 @@
 	</div>
 
 </form>
-
-
   </div>
 </div>
  
@@ -283,7 +279,6 @@
 </script>
 
 
-
   <script type="text/javascript">
     $(document).ready(function (){
         $('#myForm').validate({
@@ -313,7 +308,7 @@
     
 </script> 
  
-<script type="text/javascript">
+ <script type="text/javascript">
 		function mainThamUrl(input){
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
@@ -323,14 +318,11 @@
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
+
+</script> 
+  
  
- 
-</script>
- 
- 
- 
- 
-<script> 
+ <script> 
  
   $(document).ready(function(){
    $('#multiImg').on('change', function(){ //on file input change
@@ -358,11 +350,11 @@
    });
   });
    
-  </script>
+  </script>  
  
  
  
-  <script type="text/javascript">
+ <script type="text/javascript">
   			
   			$(document).ready(function(){
   				$('select[name="category_id"]').on('change', function(){
@@ -386,6 +378,11 @@
   				});
   			});
 
-  </script>
+  </script> 
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+ <script>
+  new FroalaEditor('textarea');
+</script>
  
 @endsection

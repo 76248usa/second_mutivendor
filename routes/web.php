@@ -15,9 +15,10 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+Route::get('/', [IndexController::class, 'Index']);
 
 Route::middleware(['auth'])->group(function() {
 Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
@@ -181,6 +182,8 @@ Route::controller(BannerController::class)->group(function(){
 
 //Frontend Product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+
 
 
 

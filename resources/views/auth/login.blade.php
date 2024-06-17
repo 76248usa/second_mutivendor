@@ -47,7 +47,7 @@
             <div class="padding_eight_all bg-white">
                 <div class="heading_s1">
                     <h1 class="mb-5">Login</h1>
-                    <p class="mb-30">Don't have an account? <a href="page-register.html">Create here</a></p>
+            <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create here</a></p>
                 </div>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -72,11 +72,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
                 </div>
-            {{-- @endif --}}
-
-            {{-- <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button> --}}
+           
         </div>
                   </form>
             </div>

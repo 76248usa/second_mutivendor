@@ -20,7 +20,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                         @foreach($categories as $category)
                         <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                             <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="{{ asset($category->category_image) }}" alt="" /></a>
+                    <a href="shop-grid-right.html"><img src="{{ asset($category->category_image ) }}" alt="category" /></a>
                             </figure>
                             <h6><a href="shop-grid-right.html">{{$category->category_name  }}</a></h6>
                             @php
