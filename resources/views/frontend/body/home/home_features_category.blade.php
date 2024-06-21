@@ -26,7 +26,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                             @php
                             $products = App\Models\Product::where('category_id',$category->id)->get();
                             @endphp
-                            <span>{{ $products->count() }}</span>
+                            <span>{{ $products->count() }} items</span>
                         </div>
                         @endforeach
                     </div>

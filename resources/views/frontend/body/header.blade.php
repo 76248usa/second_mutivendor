@@ -216,16 +216,17 @@
         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
     <div class="d-flex categori-dropdown-inner">
         <ul>
-            @foreach($categories as $item)
+            @foreach($categories as $category)
             <li>
-                <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                <a href="{{ url('product/category/'.$category->id) }}"> <img src="{{ asset( $category->category_image ) }}" alt="" /> {{ $category->category_name }} </a>
             </li>
            @endforeach
         </ul>
         <ul class="end">
-             @foreach($categories as $item)
+             @foreach($categories as $category)
             <li>
-                <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">
+                    {{ $category->category_name }} <i class="fi-rs-angle-down"></i></a>
             </li>
            @endforeach
 
@@ -273,17 +274,17 @@
          
         @foreach($categories as $category)
 
-        
             <li>
-       
-                <a href="#">{{ $category->category_name }} <i class="fi-rs-angle-down"></i></a>
+                <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">
+                    {{ $category->category_name }} <i class="fi-rs-angle-down"></i></a>
         @php
         $subcategories = App\Models\SubCategory::where('category_id',$category->id)->
         orderBy('subcategory_name','ASC')->get();
         @endphp
                 <ul class="sub-menu">
                     @foreach($subcategories as $subcategory)
-                    <li><a href="vendors-grid.html">{{ $subcategory->subcategory_name }}</a></li>
+                    <li> <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">
+                        {{ $subcategory->subcategory_name }}</></li>
                     @endforeach
                     
                 </ul>

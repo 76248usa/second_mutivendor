@@ -183,6 +183,14 @@ Route::controller(BannerController::class)->group(function(){
 //Frontend Product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+
+//PRODUCT VIEW MODAL WITH AJAX
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+
 
 
 
