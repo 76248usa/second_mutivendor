@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 // Route::get('/', function () {
@@ -189,8 +190,15 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatW
 
 //PRODUCT VIEW MODAL WITH AJAX
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+//ADD TO CART
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
+/// Add to cart store data For Product Details Page 
+Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 
 
 
