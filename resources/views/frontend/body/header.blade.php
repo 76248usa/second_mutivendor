@@ -104,23 +104,21 @@
                                 <div class="header-action-icon-2">
                                     <a href="shop-wishlist.html">
                                         <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                                        <span class="pro-count blue">6</span>
+                                      
+                                        <span class="pro-count blue" id="wishQty">0 </span>
                                     </a>
-                                    <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                    <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
                                 </div>
-
-
 
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="shop-cart.html">
                                         <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                        <span class="pro-count blue" id="cardQty"></span>
+                                        <span class="pro-count blue" id="cardQty">0 </span>
+                                        
                                     </a>
-                                    <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                    <a href="{{ route('mycart') }}"><span class="lable">Cart</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         
-                                       
-
           <!--   // mini cart start with ajax -->
          <div id="miniCart">
 
@@ -283,8 +281,6 @@
             </nav>
         </div>
     </div>
-
-
                     <div class="hotline d-none d-lg-flex">
                         <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
                         <p>1900 - 888<span>24/7 Support Center</span></p>

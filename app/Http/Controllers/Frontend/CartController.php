@@ -118,6 +118,50 @@ public function AddToCartDetails(Request $request, $id){
 
     }// End Method
 
+    public function MyCart(){
+        return view('frontend.mycart.view_mycart');
+    }
+
+    public function GetCartProduct(){
+
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,  
+            'cartTotal' => $cartTotal
+
+        ));
+
+    }// End Method
+
+    public function CartRemove($rowId){
+        Cart::remove($id);
+        return response()->json(['success','Successfully Removed from Cart']);
+    }
+
+    public function CartDecrement($rowId){
+
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty -1);
+
+        return response()->json('Decrement');
+
+    }// End Method
+
+     public function CartIncrement($rowId){
+
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty +1);
+
+        return response()->json('Increment');
+
+    }// End Method
+
+
+
 
 
 }

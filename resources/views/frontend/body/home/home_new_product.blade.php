@@ -36,7 +36,11 @@
                     </a>
                 </div>
                 <div class="product-action-1">
-                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+
+<a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}" onclick="addToWishList(this.id)"  >
+    <i class="fi-rs-heart"></i></a>
+
+
                     <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
 
 
@@ -120,17 +124,19 @@ $catwiseProduct = App\Models\Product::where('status',1)->where('category_id',$ca
             <div class="product-img-action-wrap">
 
 <div class="product-img product-img-zoom">
-                        <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
-                        <img class="default-img" src="{{ asset( $product->product_thumbnail ) }}" alt="" />
-                        
-                    </a>
-                </div>
+                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
+                <img class="default-img" src="{{ asset( $product->product_thumbnail ) }}" alt="" />
+                
+            </a>
+        </div>
 
-                <div class="product-action-1">
-                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"
-        id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
+        <div class="product-action-1">
+            <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html">
+                <i class="fi-rs-heart"></i></a>
+            <a aria-label="Compare" class="action-btn" href="shop-compare.html">
+                <i class="fi-rs-shuffle"></i></a>
+<a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"
+id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                 </div>
 
     @php
@@ -140,7 +146,7 @@ $catwiseProduct = App\Models\Product::where('status',1)->where('category_id',$ca
     @endphp
 
 
-                <div class="product-badges product-badges-position product-badges-mrg">
+ <div class="product-badges product-badges-position product-badges-mrg">
 
                     @if($product->discount_price == NULL)
                     <span class="new">New</span>
@@ -151,6 +157,8 @@ $catwiseProduct = App\Models\Product::where('status',1)->where('category_id',$ca
 
                 </div>
             </div>
+
+            
             <div class="product-content-wrap">
                 <div class="product-category">
                     <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
@@ -186,11 +194,17 @@ $catwiseProduct = App\Models\Product::where('status',1)->where('category_id',$ca
                     </div>
             @endif
 
+                    
                     <div class="add-cart">
-                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}>
+                        <a class="add" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart mr-5"
+                            ></i>Add </a>
                     </div>
+
+                    
         </div>
             </div>
+
         </div>
     </div> 
     <!--end product card-->
@@ -204,18 +218,15 @@ $catwiseProduct = App\Models\Product::where('status',1)->where('category_id',$ca
 
     </div>
                         <!--End product-grid-4-->
-                    </div>
-                    @endforeach
-
-
-                </div>
-                <!--End tab-content-->
             </div>
+            @endforeach
 
 
+        </div>
+        <!--End tab-content-->
+    </div>
 
-
-                        </div>
-                        <!--End product-grid-4-->
-                    </div>
-         </section>
+        </div>
+        <!--End product-grid-4-->
+    </div>
+</section>
