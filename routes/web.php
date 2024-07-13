@@ -17,6 +17,8 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\User\CheckoutController;
+
 
 // Route::get('/', function () {
 //     return view('frontend.index');
@@ -166,8 +168,6 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/get-cart-product' , 'GetCartProduct');
     Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
     Route::get('/cart-increment/{rowId}' , 'CartIncrement');
-
-
 });
 }); 
 
@@ -214,23 +214,33 @@ Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMi
 Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 /// Add to Wishlist 
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+//CHECKOUT
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+Route::controller(CartController::class)->group(function(){
+    Route::get('mycart', 'MyCart')->name('mycart');
+    Route::get('/get-cart-product' , 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}' , 'CartRemove');
+
+    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+
+});
+
 
 /// User All Route
 Route::middleware(['auth','role:user'])->group(function() {
-
  // Wishlist All Route 
 Route::controller(WishlistController::class)->group(function(){
     Route::get('/wishlist' , 'AllWishlist')->name('wishlist');
     Route::get('/get-wishlist-product' , 'GetWishlistProduct');
     Route::get('/wishlist-remove/{id}' , 'WishlistRemove');
 }); 
-Route::controller(CartController::class)->group(function(){
-    Route::get('mycart', 'MyCart')->name('mycart');
-    Route::get('/get-cart-product' , 'GetCartProduct');
-    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
-    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
 
-});
+Route::controller(CheckoutController::class)->group(function(){
+    Route::get('/wishlist' , 'AllWishlist')->name('wishlist');
+    Route::get('/district-get/ajax/{division_id}','DistrictGetAjax');
+}); 
 
 // Shipping Division All Route 
 Route::controller(ShippingAreaController::class)->group(function(){
@@ -261,7 +271,9 @@ Route::controller(ShippingAreaController::class)->group(function(){
     Route::get('/edit/state/{id}' , 'EditState')->name('edit.state');
     Route::post('/update/state' , 'UpdateState')->name('update.state');
     Route::get('/delete/state/{id}' , 'DeleteState')->name('delete.state');
-    Route::get('/district/ajax/{division_id}' , 'GetDistrict');
+     Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
+    Route::get('/state-get/ajax/{district_id}' , 'StateGetAjax');
+   
 }); 
 
 });

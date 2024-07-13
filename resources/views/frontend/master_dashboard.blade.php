@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <head>
@@ -15,9 +15,10 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
-   
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <link rel="stylesheet" href=" {{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     
 </head>
 
@@ -243,6 +244,29 @@
     <script src=" {{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break; 
+ }
+ @endif 
+</script>
+
     
     <script type="text/javascript">
         $.ajaxSetup({
@@ -433,6 +457,7 @@ function addToCartDetails(){
                     <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
                     <h4><span>${value.qty} × </span>${'$'+value.price}</h4>
                 </div>
+               
                 <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
                     <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"  ><i class="fi-rs-cross-small"></i></a>
                 </div>
@@ -671,9 +696,11 @@ function wishlistRemove(id){
             <td class="price" data-title="Price">
                 <h4 class="text-brand">$${value.subtotal} </h4>
             </td>
+
             <td class="action text-center" data-title="Remove">
-            <a href="#" class="text-body" type="submit" id=${value.rowId}
+            <a type="submit" class="text-body"  id="${value.rowId}" 
             onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>
+           
         </tr>`  
           });
             $('#cartPage').html(rows);
@@ -681,18 +708,19 @@ function wishlistRemove(id){
     })
  }
   cart();
-</script>
- <!--  // End Load MY Cart // -->
-<script>
- //  Remove CART Start 
-function cartRemove(id){
+
+
+
+//remove cart start
+
+ function cartRemove(id){
             $.ajax({
                 type: "GET",
                 dataType: 'json',
                 url: "/cart-remove/"+id,
                 success:function(data){
-              cart();
-              miniCart();
+                    cart();
+                    miniCart();
                      // Start Message 
             const Toast = Swal.mixin({
                   toast: true,
@@ -709,7 +737,8 @@ function cartRemove(id){
                     title: data.success, 
                     })
             }else{
-        Toast.fire({
+               
+           Toast.fire({
                     type: 'error',
                     icon: 'error', 
                     title: data.error, 
@@ -719,7 +748,7 @@ function cartRemove(id){
                 }
             })
         }
- // CART Remove End
+// Cart Remove End 
 
   //CART DECREMENT START
 
@@ -752,7 +781,47 @@ function cartDecrement(rowId){
 
 </body>
 
-</html>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

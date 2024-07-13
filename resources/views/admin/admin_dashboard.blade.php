@@ -136,16 +136,6 @@
 
 <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 
-
-{{-- 
-<script src="https://cdn.tiny.cloud/1/7z60h9eu7vq2qlvzh5bxpj4dxfn2iz72jn8nleqkdw3xgucy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
-    </script> --}}
-
-
 <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 
 

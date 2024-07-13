@@ -25,7 +25,7 @@ class CategoryController extends Controller
             'category_image' => 'required|unique:categories'
         ]);
 
-          $image = $request->file('category_image');
+        $image = $request->file('category_image');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         Image::make($image)->resize(300,300)->save('upload/category/'.$name_gen);
         $save_url = 'upload/category/'.$name_gen;

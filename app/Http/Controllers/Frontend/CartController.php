@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
+use App\Models\ShipDivision;
+use App\Models\ShipDistricts;
+use App\Models\ShipState;
+use Auth;
 
 class CartController extends Controller
 {
@@ -138,9 +142,10 @@ public function AddToCartDetails(Request $request, $id){
     }// End Method
 
     public function CartRemove($rowId){
-        Cart::remove($id);
-        return response()->json(['success','Successfully Removed from Cart']);
-    }
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Successfully Remove From Cart']);
+
+    }// End Method
 
     public function CartDecrement($rowId){
 
@@ -159,6 +164,48 @@ public function AddToCartDetails(Request $request, $id){
         return response()->json('Increment');
 
     }// End Method
+
+    public function CheckoutCreate(){
+        if(Auth::check()){
+            if(Cart::total() > 0){
+            $carts = Cart::content();
+            $cartQty = Cart::count();
+            $cartTotal = Cart::total();
+            $districts = ShipDistricts::orderBy('district_name','ASC')->get();
+            $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+            return view('frontend.checkout.checkout_view', compact('carts','cartQty','cartTotal',
+            'divisions','districts'));
+
+            }else{
+            $notification = array(
+            'message' => 'No products to check out',
+            'alert-type' => 'error'
+        );
+         return redirect()->to('/')->with($notification);  
+            }
+
+        }else{
+            $notification = array(
+            'message' => 'Please Log In to Access Checkout',
+            'alert-type' => 'error'
+        );
+        return redirect()->route('login')->with($notification);
+        }
+    }
+
+     public function DistrictGetAjax($division_id){
+
+        $ship = ShipDistricts::where('division_id',$division_id)->orderBy('district_name','ASC')->get();
+        return json_encode($ship);
+
+    } // End Method 
+
+    public function StateGetAjax($district_id){
+
+        $ship = ShipState::where('district_id',$district_id)->orderBy('state_name','ASC')->get();
+        return json_encode($ship);
+
+    }// End Method 
 
 
 

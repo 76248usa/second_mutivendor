@@ -39,51 +39,6 @@
                             </thead>
                             <tbody id="cartPage">
 
-
-        {{-- <tr class="pt-30">
-            <td class="custome-checkbox pl-30">
-
-            </td>
-            <td class="image product-thumbnail pt-40"><img src="assets/imgs/shop/product-1-1.jpg" alt="#"></td>
-            <td class="product-des product-name">
-                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">Field Roast Chao Cheese Creamy Original</a></h6>
-                <div class="product-rate-cover">
-                    <div class="product-rate d-inline-block">
-                        <div class="product-rating" style="width:90%">
-                        </div>
-                    </div>
-                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                </div>
-            </td>
-            <td class="price" data-title="Price">
-                <h4 class="text-body">$2.51 </h4>
-            </td>
-
-              <td class="price" data-title="Price">
-                <h6 class="text-body">Color </h6>
-            </td>
-
-              <td class="price" data-title="Price">
-                <h6 class="text-body">Size </h6>
-            </td>
-            <td class="text-center detail-info" data-title="Stock">
-                <div class="detail-extralink mr-15">
-                    <div class="detail-qty border radius">
-                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
-                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                    </div>
-                </div>
-            </td>
-            <td class="price" data-title="Price">
-                <h4 class="text-brand">$2.51 </h4>
-            </td>
-            <td class="action text-center" data-title="Remove"><a href="#" class="text-body"><i class="fi-rs-trash"></i></a></td>
-        </tr> --}}
-
-
-
-
                             </tbody>
                         </table>
                     </div>
@@ -107,8 +62,6 @@
 
                         <div class="col-lg-7">
                              <div class="divider-2 mb-30"></div>
-
-
 
                             <div class="border p-md-4 cart-totals ml-30">
                         <div class="table-responsive">
@@ -153,11 +106,10 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="#" class="btn mb-20 w-100">Proceed To CheckOut<i class="fi-rs-sign-out ml-15"></i></a>
+                        <a href="{{ route('checkout') }}" class="btn mb-20 w-100">
+                            Proceed To CheckOut<i class="fi-rs-sign-out ml-15"></i></a>
                     </div>
                         </div>
-
-
 
                     </div>
                 </div>
